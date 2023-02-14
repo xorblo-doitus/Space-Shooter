@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnr0cn7bjspsq"]
+
+[ext_resource type="Script" path="res://src/playable_scenes/world.gd" id="1_ptqmb"]
+[ext_resource type="PackedScene" uid="uid://cyxhgjybj0tsy" path="res://src/spawn_point.tscn" id="2_r822a"]
+[ext_resource type="PackedScene" uid="uid://bsicvfemmcryr" path="res://src/vessels/player_vessel.tscn" id="3_nbfms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_matw0"]
+size = Vector2(20, 1080)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_ptqmb")
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Vessels" type="Node2D" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Player" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+position = Vector2(288, 85)
+vessel = ExtResource("3_nbfms")
+
+[node name="Dude" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+position = Vector2(1586, 262)
+
+[node name="Dude2" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+position = Vector2(1667, 689)
+
+[node name="Dude3" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+position = Vector2(1673, 881)
+
+[node name="Dude4" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+position = Vector2(1682, 1049)
+
+[node name="StatitcBodies" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StatitcBodies"]
+position = Vector2(0, 540)
+collision_layer = 65535
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StatitcBodies/StaticBody2D"]
+shape = SubResource("RectangleShape2D_matw0")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="StatitcBodies"]
+position = Vector2(1920, 540)
+collision_layer = 65535
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StatitcBodies/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_matw0")

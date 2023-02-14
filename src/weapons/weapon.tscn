@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cib1spcdun4on"]
+
+[ext_resource type="Script" path="res://src/weapons/weapon.gd" id="1_w0832"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_w0832")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 0.513726)
+polygon = PackedVector2Array(0, -30, 80, -80, 30, 0, 80, 80, 0, 30, -80, 80, -30, 0, -80, -80)
+
+[node name="AppearPoint" type="Marker2D" parent="."]
+position = Vector2(60, 0)
+gizmo_extents = 20.0
