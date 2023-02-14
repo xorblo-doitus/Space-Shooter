@@ -11,6 +11,6 @@ func _physics_process(delta) -> void:
 	super._physics_process(delta)
 
 
-func equip_weapon(new_weapon: Weapon) -> void:
+func install_weapon(new_weapon: Weapon) -> void:
 	new_weapon.flip()
-	super.equip_weapon(new_weapon)
+	super.install_weapon(new_weapon)

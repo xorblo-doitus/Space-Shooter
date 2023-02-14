@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Vessel
 
-signal fire(bullet: Bullet)
+signal weapon_equiped(new_weapon: Weapon)
 
 const KNOCKBACK_HISTORY: int = 5
 const DAMAGE_BLINK_DECAY_SPEED: float = 3
@@ -12,7 +12,7 @@ const DAMAGE_BLINK_EXPONENT: float = 1.4
 @export_range(1, 1000, 1, "or_greater", "suffix:❤") var max_health: float = 100
 @export_range(0, 1000, 0.1, "or_greater", "suffix:p/s") var speed: float = 400
 @export_range(100, 1000, 1, "or_less", "or_greater", "suffix:p/s") var acceleration_speed: float = 2000
-@export var bullet_type := preload("res://src/bullets/basic_bullet.tscn")
+#@export var bullet_type := preload("res://src/bullets/basic_bullet.tscn")
 @export_range(0, 10, 0.1, "or_greater", "suffix:p/s") var air_friction: float = 4
 @export var firing: bool = false
 @export var direction := Vector2.ZERO
@@ -36,7 +36,7 @@ var weapon: Weapon
 
 func _ready():
 	health = max_health
-	equip_weapon(default_weapon.instantiate())
+	install_weapon(default_weapon.instantiate())
 	canon.add_child(weapon)
 	
 	for __ in KNOCKBACK_HISTORY:
@@ -95,12 +95,12 @@ func _physics_process(delta):
 			apply_knockback(collision.get_normal() * __other.get_knockback_dealed(), __other)
 	
 	
-	for bullet in weapon.update(delta, firing, velocity):
-		emit_signal(
-			"fire",
-			bullet
-		)
-	velocity += weapon.recoil_last_frame
+#	for bullet in weapon.update(delta, firing, velocity):
+#		emit_signal(
+#			"fire",
+#			bullet
+#		)
+	velocity += weapon.update(delta, firing, velocity)
 #	reloading -= 1 * delta
 #
 #	if firing:
@@ -139,6 +139,13 @@ func be_hurt_by(damage_source: DamageSource):
 #		animator.play("hurted")s
 		damage_hint = clamp(damage_hint + pow(damage_source.damage/DAMAGE_BLINK_DIVIDING, DAMAGE_BLINK_EXPONENT) + 0.3, 0, 3)
 
-func equip_weapon(new_weapon: Weapon) -> void:
+func install_weapon(new_weapon: Weapon) -> void:
 	new_weapon.team = team
 	weapon = new_weapon
+	emit_signal("weapon_equiped", new_weapon)
+
+func get_installed_weapons() -> Array[Weapon]:
+	return [weapon]
+
+
+

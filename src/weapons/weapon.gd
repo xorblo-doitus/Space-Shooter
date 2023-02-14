@@ -1,6 +1,8 @@
 extends Node2D
 class_name Weapon
 
+signal fire(bullet: Bullet)
+
 const empty_bullet_array: Array[Bullet] = []
 
 @onready var appear_point = $AppearPoint
@@ -14,26 +16,26 @@ const empty_bullet_array: Array[Bullet] = []
 
 var team: ST.TEAM = ST.TEAM.Enemy
 var reloading: float = 0.0
-var recoil_last_frame: Vector2 = Vector2.ZERO
 
-func update(delta: float, firing: bool, implied_velocity: Vector2) -> Array[Bullet]:
-	recoil_last_frame = Vector2.ZERO
+func update(delta: float, firing: bool, implied_velocity: Vector2) -> Vector2:
 	reloading -= 1 * delta
 	if firing:
 		if reloading <= 0:
 			var bullets_this_frame: Array[Bullet] = []
+			var recoil_this_frame: Vector2 = Vector2.ZERO
 			for __ in range(-floor(reloading/reload_time)): # round toward -inf
-				recoil_last_frame += Vector2(-recoil, 0).rotated(deg_to_rad(shot_direction))
-				bullets_this_frame.append(
+				recoil_this_frame += Vector2(-recoil, 0).rotated(deg_to_rad(shot_direction))
+				emit_signal(
+					"fire",
 					bullet.instantiate()
-					.place(appear_point.global_position)
-					.setup(implied_velocity*velocity_kept + Vector2(shot_speed, 0).rotated(deg_to_rad(shot_direction)), team, -reloading)
+						.place(appear_point.global_position)
+						.setup(implied_velocity*velocity_kept + Vector2(shot_speed, 0).rotated(deg_to_rad(shot_direction)), team, -reloading)
 				)
 				reloading = reloading + reload_time
-			return bullets_this_frame
+			return recoil_this_frame
 	else:
 		reloading = max(reloading, 0)
-	return empty_bullet_array
+	return Vector2.ZERO
 
 func place(pos: Vector2) -> Weapon:
 	position = pos
