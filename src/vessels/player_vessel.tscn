@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsicvfemmcryr"]
+
+[ext_resource type="Script" path="res://src/vessels/player_vessel.gd" id="1_3nvqr"]
+[ext_resource type="PackedScene" uid="uid://co15xrqex8muw" path="res://src/vessels/vessel.tscn" id="1_i8fa2"]
+
+[node name="PlayerVessel" instance=ExtResource("1_i8fa2")]
+collision_layer = 1
+collision_mask = 240
+script = ExtResource("1_3nvqr")
+team = 1
+max_health = 1000.0

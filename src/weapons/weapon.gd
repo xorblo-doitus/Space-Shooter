@@ -1,0 +1,43 @@
+extends Node2D
+class_name Weapon
+
+const empty_bullet_array: Array[Bullet] = []
+
+@onready var appear_point = $AppearPoint
+
+@export var bullet := preload("res://src/bullets/basic_bullet.tscn")
+@export_range(0, 60, 0.001, "or_greater", "suffix:s") var reload_time: float = 0.5
+@export_range(0, 1000, 1, "or_less", "or_greater", "suffix:p/s") var recoil: float = 400
+@export_range(0, 3000, 0.1, "or_greater", "suffix:p/s") var shot_speed: float = 800
+@export_range(-360, 360, 0.1, "or_less", "or_greater", "suffix:°") var shot_direction: float = -180
+@export_range(0, 1, 0.01, "suffix:*") var velocity_kept: float = 0.16
+
+var team: ST.TEAM = ST.TEAM.Enemy
+var reloading: float = 0.0
+var recoil_last_frame: Vector2 = Vector2.ZERO
+
+func update(delta: float, firing: bool, implied_velocity: Vector2) -> Array[Bullet]:
+	recoil_last_frame = Vector2.ZERO
+	reloading -= 1 * delta
+	if firing:
+		if reloading <= 0:
+			var bullets_this_frame: Array[Bullet] = []
+			for __ in range(-floor(reloading/reload_time)): # round toward -inf
+				recoil_last_frame += Vector2(-recoil, 0).rotated(deg_to_rad(shot_direction))
+				bullets_this_frame.append(
+					bullet.instantiate()
+					.place(appear_point.global_position)
+					.setup(implied_velocity*velocity_kept + Vector2(shot_speed, 0).rotated(deg_to_rad(shot_direction)), team, -reloading)
+				)
+				reloading = reloading + reload_time
+			return bullets_this_frame
+	else:
+		reloading = max(reloading, 0)
+	return empty_bullet_array
+
+func place(pos: Vector2) -> Weapon:
+	position = pos
+	return self
+
+func flip() -> void:
+	shot_direction += 180

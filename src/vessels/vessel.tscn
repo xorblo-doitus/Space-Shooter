@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://co15xrqex8muw"]
+
+[ext_resource type="Script" path="res://src/vessels/vessel.gd" id="1_brldt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t53g7"]
+radius = 15.0
+height = 60.0
+
+[sub_resource type="Animation" id="Animation_l5sqn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:debug_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.6, 0.701961, 0.419608)]
+}
+
+[sub_resource type="Animation" id="Animation_umuma"]
+resource_name = "hurted"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:debug_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.6, 0.701961, 0.419608), Color(1, 0, 0, 0.419608), Color(0, 0.6, 0.701961, 0.419608)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uiss6"]
+_data = {
+"RESET": SubResource("Animation_l5sqn"),
+"hurted": SubResource("Animation_umuma")
+}
+
+[node name="Vessel" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 15
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_brldt")
+air_friction = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t53g7")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uiss6")
+}
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Canon" type="Marker2D" parent="Pivot"]
+position = Vector2(-30, 0)

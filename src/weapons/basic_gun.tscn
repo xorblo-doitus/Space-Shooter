@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d377i420cd5ct"]
+
+[ext_resource type="PackedScene" uid="uid://cib1spcdun4on" path="res://src/weapons/weapon.tscn" id="1_8mwhr"]
+
+[node name="BasicGun" instance=ExtResource("1_8mwhr")]
+
+[node name="Polygon2D" parent="." index="0"]
+polygon = PackedVector2Array(10, -6, -15, -15, -5, 0, -15, 15, 10, 6)
+
+[node name="AppearPoint" parent="." index="1"]
+position = Vector2(-5, 0)
