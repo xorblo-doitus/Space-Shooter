@@ -7,6 +7,7 @@ const KNOCKBACK_HISTORY: int = 5
 const DAMAGE_BLINK_DECAY_SPEED: float = 3
 const DAMAGE_BLINK_DIVIDING: int = 74
 const DAMAGE_BLINK_EXPONENT: float = 1.4
+const EMPTY_WEAPON_ARRAY: Array[Weapon] = []
 
 @export var team: ST.TEAM = ST.TEAM.Enemy
 @export_range(1, 1000, 1, "or_greater", "suffix:❤") var max_health: float = 100
@@ -142,10 +143,8 @@ func be_hurt_by(damage_source: DamageSource):
 func install_weapon(new_weapon: Weapon) -> void:
 	new_weapon.team = team
 	weapon = new_weapon
-	emit_signal("weapon_equiped", new_weapon)
+	weapon_equiped.emit(new_weapon)
 
 func get_installed_weapons() -> Array[Weapon]:
-	return [weapon]
-
-
+	return [weapon] if weapon else EMPTY_WEAPON_ARRAY
 

@@ -21,12 +21,10 @@ func update(delta: float, firing: bool, implied_velocity: Vector2) -> Vector2:
 	reloading -= 1 * delta
 	if firing:
 		if reloading <= 0:
-			var bullets_this_frame: Array[Bullet] = []
 			var recoil_this_frame: Vector2 = Vector2.ZERO
 			for __ in range(-floor(reloading/reload_time)): # round toward -inf
 				recoil_this_frame += Vector2(-recoil, 0).rotated(deg_to_rad(shot_direction))
-				emit_signal(
-					"fire",
+				fire.emit(
 					bullet.instantiate()
 						.place(appear_point.global_position)
 						.setup(implied_velocity*velocity_kept + Vector2(shot_speed, 0).rotated(deg_to_rad(shot_direction)), team, -reloading)

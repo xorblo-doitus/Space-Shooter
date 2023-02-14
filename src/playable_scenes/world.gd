@@ -6,15 +6,24 @@ class_name World
 
 func _ready():
 	for spawn_point in $SpawnPoints.get_children():
-		vessels.add_child(spawn_point.vessel.instantiate().place(spawn_point.global_position))
+		add_spawn_point(spawn_point)
 	
-	for vessel in vessels.get_children():
-		vessel.connect("weapon_equiped", add_weapon)
-		for weapon in vessel.get_installed_weapons():
-			add_weapon(weapon)
+#	for vessel in vessels.get_children(): 
+#		add_vessel(vessel)
+	
+	$AnimationPlayer.play("test_level")
+
+func add_spawn_point(spawn_point: SpawnPoint) -> void:
+	spawn_point.spawned.connect(add_vessel)
+
+func add_vessel(vessel: Vessel) -> void:
+	vessel.weapon_equiped.connect(add_weapon)
+	for weapon in vessel.get_installed_weapons():
+		add_weapon(weapon)
+	vessels.add_child(vessel)
 
 func add_weapon(weapon: Weapon) -> void:
-	weapon.connect("fire", add_bullet)
+	weapon.fire.connect(add_bullet)
 
 func add_bullet(bullet: Bullet) -> void:
 	bullets.add_child(bullet)

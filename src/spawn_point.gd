@@ -1,3 +1,11 @@
 extends Marker2D
+class_name SpawnPoint
 
-@export var vessel := preload("res://src/vessels/dude_vessel.tscn")
+## A point spawning an enemy, can do it multiple times
+
+signal spawned(new_vessel: Vessel)
+
+@export var packed_vessel := preload("res://src/vessels/dude_vessel.tscn")
+
+func spawn() -> void:
+	spawned.emit(packed_vessel.instantiate().place(global_position))
