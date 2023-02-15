@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://n3gr7nakcswe"]
+
+[ext_resource type="PackedScene" uid="uid://dfp5ejo00djmr" path="res://src/bullets/bullet.tscn" id="1_l2f0o"]
+[ext_resource type="Script" path="res://src/resources/damage_source.gd" id="2_o0fh3"]
+[ext_resource type="Script" path="res://src/resources/visible_area.gd" id="3_43aop"]
+
+[sub_resource type="Resource" id="Resource_cwcnf"]
+script = ExtResource("2_o0fh3")
+damage = 1.0
+knockback_multiplier = 0.1
+
+[sub_resource type="Resource" id="Resource_q8asd"]
+script = ExtResource("3_43aop")
+size = Vector2(6, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lf35k"]
+radius = 3.0
+
+[node name="SmallBullet" instance=ExtResource("1_l2f0o")]
+damage_source = SubResource("Resource_cwcnf")
+visible_area = SubResource("Resource_q8asd")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_lf35k")

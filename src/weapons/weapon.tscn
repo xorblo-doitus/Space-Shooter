@@ -10,5 +10,5 @@ color = Color(1, 0, 0, 0.513726)
 polygon = PackedVector2Array(0, -30, 80, -80, 30, 0, 80, 80, 0, 30, -80, 80, -30, 0, -80, -80)
 
 [node name="AppearPoint" type="Marker2D" parent="."]
-position = Vector2(60, 0)
+position = Vector2(-60, 0)
 gizmo_extents = 20.0

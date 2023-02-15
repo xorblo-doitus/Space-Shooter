@@ -5,7 +5,8 @@ func _ready() -> void:
 	super._ready()
 
 func _physics_process(delta) -> void:
-	health = max_health
+#	health = max_health
+	$Label.text = str(health)
 	direction = Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down"))
 	firing = Input.is_action_pressed("ui_accept")
 	super._physics_process(delta)

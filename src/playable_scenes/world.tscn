@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnr0cn7bjspsq"]
+[gd_scene load_steps=9 format=3 uid="uid://cnr0cn7bjspsq"]
 
 [ext_resource type="Script" path="res://src/playable_scenes/world.gd" id="1_ptqmb"]
 [ext_resource type="PackedScene" uid="uid://cyxhgjybj0tsy" path="res://src/spawn_point.tscn" id="2_r822a"]
 [ext_resource type="PackedScene" uid="uid://bsicvfemmcryr" path="res://src/vessels/player_vessel.tscn" id="3_nbfms"]
+[ext_resource type="PackedScene" uid="uid://boej5f28jyrn" path="res://src/vessels/spammer_vessel.tscn" id="4_56gsn"]
+[ext_resource type="PackedScene" uid="uid://blaxpwkxvbxf" path="res://src/vessels/big_vessel.tscn" id="5_gj0fc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_matw0"]
 size = Vector2(20, 1080)
@@ -38,6 +40,34 @@ tracks/1/keys = {
 "method": &"spawn"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpawnPoints/Spammer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpawnPoints/Big")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0p843"]
 _data = {
@@ -60,11 +90,13 @@ packed_vessel = ExtResource("3_nbfms")
 [node name="Dude" parent="SpawnPoints" instance=ExtResource("2_r822a")]
 position = Vector2(1586, 262)
 
-[node name="Dude2" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+[node name="Spammer" parent="SpawnPoints" instance=ExtResource("2_r822a")]
 position = Vector2(1667, 689)
+packed_vessel = ExtResource("4_56gsn")
 
-[node name="Dude3" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+[node name="Big" parent="SpawnPoints" instance=ExtResource("2_r822a")]
 position = Vector2(1673, 881)
+packed_vessel = ExtResource("5_gj0fc")
 
 [node name="Dude4" parent="SpawnPoints" instance=ExtResource("2_r822a")]
 position = Vector2(1682, 1049)

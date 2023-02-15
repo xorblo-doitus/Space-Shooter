@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkovbqata6802"]
+
+[ext_resource type="PackedScene" uid="uid://cib1spcdun4on" path="res://src/weapons/weapon.tscn" id="1_2uvei"]
+[ext_resource type="PackedScene" uid="uid://n3gr7nakcswe" path="res://src/bullets/small_bullet.tscn" id="2_vnvt4"]
+
+[node name="MachineGun" instance=ExtResource("1_2uvei")]
+bullet = ExtResource("2_vnvt4")
+reload_time = 0.05
+recoil = 40.0
+
+[node name="Polygon2D" parent="." index="0"]
+polygon = PackedVector2Array(30, -30, 30, 30, -30, 75, -10, 0, -30, -75)
+
+[node name="AppearPoint" parent="." index="1"]
+position = Vector2(-11, 0)

@@ -4,9 +4,10 @@ class_name Vessel
 signal weapon_equiped(new_weapon: Weapon)
 
 const KNOCKBACK_HISTORY: int = 5
-const DAMAGE_BLINK_DECAY_SPEED: float = 3
-const DAMAGE_BLINK_DIVIDING: int = 74
-const DAMAGE_BLINK_EXPONENT: float = 1.4
+const DAMAGE_BLINK_DECAY_SPEED: float = 4
+const DAMAGE_BLINK_DIVIDING: int = 19
+const DAMAGE_BLINK_EXPONENT: float = 1.5
+const DAMAGE_BLINK_OFFSET: float = 0.3
 const EMPTY_WEAPON_ARRAY: Array[Weapon] = []
 
 @export var team: ST.TEAM = ST.TEAM.Enemy
@@ -138,7 +139,7 @@ func be_hurt_by(damage_source: DamageSource):
 		queue_free()
 	else:
 #		animator.play("hurted")s
-		damage_hint = clamp(damage_hint + pow(damage_source.damage/DAMAGE_BLINK_DIVIDING, DAMAGE_BLINK_EXPONENT) + 0.3, 0, 3)
+		damage_hint = clamp(damage_hint + pow(damage_source.damage/DAMAGE_BLINK_DIVIDING, DAMAGE_BLINK_EXPONENT) + DAMAGE_BLINK_OFFSET, 0, 3)
 
 func install_weapon(new_weapon: Weapon) -> void:
 	new_weapon.team = team

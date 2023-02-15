@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byx501vlsif2o"]
+
+[ext_resource type="PackedScene" uid="uid://co15xrqex8muw" path="res://src/vessels/vessel.tscn" id="1_5gvvp"]
+
+[node name="EnemyVessel" instance=ExtResource("1_5gvvp")]
+firing = true
