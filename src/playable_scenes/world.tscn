@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnr0cn7bjspsq"]
+[gd_scene load_steps=11 format=3 uid="uid://cnr0cn7bjspsq"]
 
 [ext_resource type="Script" path="res://src/playable_scenes/world.gd" id="1_ptqmb"]
 [ext_resource type="PackedScene" uid="uid://cyxhgjybj0tsy" path="res://src/spawn_point.tscn" id="2_r822a"]
 [ext_resource type="PackedScene" uid="uid://bsicvfemmcryr" path="res://src/vessels/player_vessel.tscn" id="3_nbfms"]
 [ext_resource type="PackedScene" uid="uid://boej5f28jyrn" path="res://src/vessels/spammer_vessel.tscn" id="4_56gsn"]
 [ext_resource type="PackedScene" uid="uid://blaxpwkxvbxf" path="res://src/vessels/big_vessel.tscn" id="5_gj0fc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_matw0"]
-size = Vector2(20, 1080)
+[ext_resource type="Script" path="res://src/player_fence.gd" id="6_f6ko7"]
 
 [sub_resource type="Animation" id="Animation_el2on"]
 resource_name = "test_level"
@@ -74,6 +72,12 @@ _data = {
 "test_level": SubResource("Animation_el2on")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_matw0"]
+size = Vector2(56, 1232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3rxe"]
+size = Vector2(2072, 56)
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_ptqmb")
 
@@ -103,23 +107,44 @@ position = Vector2(1682, 1049)
 
 [node name="StatitcBodies" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="StatitcBodies"]
-position = Vector2(0, 540)
-collision_layer = 65535
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StatitcBodies/StaticBody2D"]
-shape = SubResource("RectangleShape2D_matw0")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="StatitcBodies"]
-position = Vector2(1920, 540)
-collision_layer = 65535
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StatitcBodies/StaticBody2D2"]
-shape = SubResource("RectangleShape2D_matw0")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_0p843")
 }
+
+[node name="PlayerFence" type="Node2D" parent="."]
+script = ExtResource("6_f6ko7")
+margin = 20
+width = 56
+
+[node name="Left" type="StaticBody2D" parent="PlayerFence"]
+position = Vector2(-48, 540)
+collision_layer = 65535
+collision_mask = 0
+
+[node name="VerticalShape" type="CollisionShape2D" parent="PlayerFence/Left"]
+shape = SubResource("RectangleShape2D_matw0")
+
+[node name="Right" type="StaticBody2D" parent="PlayerFence"]
+position = Vector2(1968, 540)
+collision_layer = 65535
+collision_mask = 0
+
+[node name="VerticalShape" type="CollisionShape2D" parent="PlayerFence/Right"]
+shape = SubResource("RectangleShape2D_matw0")
+
+[node name="Up" type="StaticBody2D" parent="PlayerFence"]
+position = Vector2(960, -48)
+collision_layer = 65535
+collision_mask = 0
+
+[node name="HorizontalShape" type="CollisionShape2D" parent="PlayerFence/Up"]
+shape = SubResource("RectangleShape2D_l3rxe")
+
+[node name="Down" type="StaticBody2D" parent="PlayerFence"]
+position = Vector2(960, 1128)
+collision_layer = 65535
+collision_mask = 0
+
+[node name="HorizontalShape" type="CollisionShape2D" parent="PlayerFence/Down"]
+shape = SubResource("RectangleShape2D_l3rxe")

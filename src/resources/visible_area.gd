@@ -8,8 +8,8 @@ class_name VisibleArea
 		size = new
 		@warning_ignore("narrowing_conversion")
 		up = -new.y/2
-		down = new.y/2 + ProjectSettings.get_setting("display/window/size/viewport_height")
-		right = new.x/2 + ProjectSettings.get_setting("display/window/size/viewport_width")
+		down = new.y/2 + ST.get_screen_height()
+		right = new.x/2 + ST.get_screen_width()
 		@warning_ignore("narrowing_conversion")
 		left = -new.x/2
 		prints("Set VisibleArea's size to", new, "resulting to up", up, "down", down, "right", right, "left", left)
@@ -22,7 +22,7 @@ var left: int
 #func get_up_right_corner() -> Vector2:
 #	return -size/2
 #func get_down_left_corner() -> Vector2:
-#	return size/2 + Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height"))
+#	return size/2 + Vector2(ST.get_screen_width(), ST.get_screen_height())
 
 func is_visible(position: Vector2) -> bool:
 	return position.x > left and position.x < right and position.y > up and position.y < down

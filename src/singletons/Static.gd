@@ -24,3 +24,8 @@ static func setup_collisions(obj: CollisionObject2D, team: TEAM, ghost: bool = f
 		push_warning("Alone team unimplemented")
 	
 	return obj
+
+static func get_screen_height() -> int:
+	return ProjectSettings.get_setting("display/window/size/viewport_height")
+static func get_screen_width() -> int:
+	return ProjectSettings.get_setting("display/window/size/viewport_width")
