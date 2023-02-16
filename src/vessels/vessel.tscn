@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://co15xrqex8muw"]
+[gd_scene load_steps=7 format=3 uid="uid://co15xrqex8muw"]
 
 [ext_resource type="Script" path="res://src/vessels/vessel.gd" id="1_brldt"]
+[ext_resource type="PackedScene" uid="uid://c0dghebk37oqr" path="res://src/ui/health_bar.tscn" id="2_jrg4h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t53g7"]
 radius = 15.0
@@ -65,3 +66,8 @@ libraries = {
 
 [node name="Canon" type="Marker2D" parent="Pivot"]
 position = Vector2(-30, 0)
+
+[node name="HealthBarPivot" type="Marker2D" parent="."]
+position = Vector2(0, 50)
+
+[node name="HealthBar" parent="HealthBarPivot" instance=ExtResource("2_jrg4h")]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0rkviu5w5alt"]
+
+[ext_resource type="PackedScene" uid="uid://c0dghebk37oqr" path="res://src/ui/health_bar.tscn" id="1_k8whi"]
+[ext_resource type="Script" path="res://Z_helpers/testing_health_bar.gd" id="2_ep3h3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dctta"]
+bg_color = Color(1.035, 1.965, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="TestingHealthBar" instance=ExtResource("1_k8whi")]
+theme_override_styles/fill = SubResource("StyleBoxFlat_dctta")
+value = 65.5
+script = ExtResource("2_ep3h3")
+testing_health = 65.5
+manually_update_gradient = false
+
+[node name="Bit" type="ColorRect" parent="." index="0"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 1.0
+offset_bottom = 34.0
+
+[node name="Gradient" type="Node2D" parent="." index="1"]

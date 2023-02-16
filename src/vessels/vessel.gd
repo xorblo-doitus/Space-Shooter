@@ -25,6 +25,7 @@ const EMPTY_WEAPON_ARRAY: Array[Weapon] = []
 
 @onready var canon = $Pivot/Canon
 @onready var collision_shape_2d = $CollisionShape2D
+@onready var health_bar = $HealthBarPivot/HealthBar
 
 #@onready var animator = $Animator
 
@@ -47,6 +48,9 @@ func _ready():
 #	platform_floor_layers = 0
 	
 	ST.setup_collisions(self, team)
+	
+	health_bar.max_health = max_health
+	health_bar.target_value = health
 	
 #	momentum = min(speed, momentum)
 
@@ -140,6 +144,8 @@ func be_hurt_by(damage_source: DamageSource):
 	else:
 #		animator.play("hurted")s
 		damage_hint = clamp(damage_hint + pow(damage_source.damage/DAMAGE_BLINK_DIVIDING, DAMAGE_BLINK_EXPONENT) + DAMAGE_BLINK_OFFSET, 0, 3)
+		health_bar.target_value = health
+		health_bar.blink = true
 
 func install_weapon(new_weapon: Weapon) -> void:
 	new_weapon.team = team

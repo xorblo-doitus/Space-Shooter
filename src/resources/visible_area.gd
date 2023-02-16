@@ -8,8 +8,10 @@ class_name VisibleArea
 		size = new
 		@warning_ignore("narrowing_conversion")
 		up = -new.y/2
-		down = new.y/2 + ST.get_screen_height()
-		right = new.x/2 + ST.get_screen_width()
+		@warning_ignore("narrowing_conversion")
+		down = new.y/2 + ProjectSettings.get_setting("display/window/size/viewport_height")
+		@warning_ignore("narrowing_conversion")
+		right = new.x/2 + ProjectSettings.get_setting("display/window/size/viewport_width")
 		@warning_ignore("narrowing_conversion")
 		left = -new.x/2
 		prints("Set VisibleArea's size to", new, "resulting to up", up, "down", down, "right", right, "left", left)

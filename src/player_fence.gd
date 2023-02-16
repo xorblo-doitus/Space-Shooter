@@ -19,8 +19,8 @@ func change(can_change: bool = Engine.is_editor_hint()):
 	$Up/HorizontalShape.shape.size = Vector2i(ST.get_screen_width() + 2*(width+margin), width)
 	$Left.position = Vector2(-margin - width/2., ST.get_screen_height()/2.)
 	$Right.position = Vector2(margin + ST.get_screen_width() + width/2., ST.get_screen_height()/2.)
-	$Up.position = Vector2(ST.get_screen_width()/2, -margin -width/2.)
-	$Down.position = Vector2(ST.get_screen_width()/2, margin + ST.get_screen_height() + width/2.)
+	$Up.position = Vector2(ST.get_screen_width()/2., -margin -width/2.)
+	$Down.position = Vector2(ST.get_screen_width()/2., margin + ST.get_screen_height() + width/2.)
 
 func _ready():
 	change(true)
