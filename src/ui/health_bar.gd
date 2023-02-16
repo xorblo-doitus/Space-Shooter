@@ -1,6 +1,8 @@
 extends ProgressBar
 class_name HealthBar
 
+const text_format: StringName = "%d/%d"
+
 @export_range(0, 10) var disappear_speed: float = 0.5
 
 var target_value: float = 75:
@@ -24,6 +26,8 @@ var max_health: float = 100:
 var style_box: StyleBox = get_theme_stylebox("fill").duplicate()
 
 @onready var blink_timer = $BlinkTimer
+@onready var label = $Label
+
 
 func _ready():
 	style_box.bg_color = Color(0, 0, 0)
@@ -40,6 +44,7 @@ func stop_blink() -> void:
 
 func update() -> void:
 	value = target_value
+	label.text = text_format % [ceili(target_value), max_health]
 	update_color()
 	if target_value == max_health:
 		set_process(true)

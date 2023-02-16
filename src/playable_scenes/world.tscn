@@ -92,18 +92,15 @@ position = Vector2(288, 85)
 packed_vessel = ExtResource("3_nbfms")
 
 [node name="Dude" parent="SpawnPoints" instance=ExtResource("2_r822a")]
-position = Vector2(1586, 262)
+position = Vector2(1092, 400)
 
 [node name="Spammer" parent="SpawnPoints" instance=ExtResource("2_r822a")]
-position = Vector2(1667, 689)
+position = Vector2(1086, 494)
 packed_vessel = ExtResource("4_56gsn")
 
 [node name="Big" parent="SpawnPoints" instance=ExtResource("2_r822a")]
-position = Vector2(1673, 881)
+position = Vector2(1089, 590)
 packed_vessel = ExtResource("5_gj0fc")
-
-[node name="Dude4" parent="SpawnPoints" instance=ExtResource("2_r822a")]
-position = Vector2(1682, 1049)
 
 [node name="StatitcBodies" type="Node2D" parent="."]
 
