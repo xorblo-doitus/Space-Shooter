@@ -2,6 +2,7 @@ extends ProgressBar
 class_name HealthBar
 
 const text_format: StringName = "%d/%d"
+const non_full_alpha: float = 0.3
 
 @export_range(0, 10) var disappear_speed: float = 0.5
 
@@ -26,13 +27,23 @@ var max_health: float = 100:
 var style_box: StyleBox = get_theme_stylebox("fill").duplicate()
 
 @onready var blink_timer = $BlinkTimer
+@onready var disappear_timer = $DisappearTimer
 @onready var label = $Label
 
 
 func _ready():
+	hide()
 	style_box.bg_color = Color(0, 0, 0)
 	add_theme_stylebox_override("fill", style_box)
 	update()
+
+
+func setup(init_health: float, init_max_health: float) -> HealthBar:
+	target_value = init_health
+	max_health = init_max_health
+	hide()
+	return self
+
 
 static func set_color_from_percent(color: Color, percent: float) -> Color:
 	color.r = 3-percent*3
@@ -46,15 +57,29 @@ func update() -> void:
 	value = target_value
 	label.text = text_format % [ceili(target_value), max_health]
 	update_color()
-	if target_value == max_health:
-		set_process(true)
+	modulate.a = 1
+	show()
+	trigger_chrono_fade_out()
+
+
+func trigger_chrono_fade_out() -> void:
+	disappear_timer.start()
+
+
+func start_fade_out() -> void:
+	set_process(true)
+
 
 func _process(delta):
 	if target_value == max_health:
 		modulate.a = move_toward(modulate.a, 0, delta*disappear_speed)
+		if modulate.a == 0:
+			hide()
+			set_process(false)
 	else:
-		modulate.a = 1
-		set_process(false)
+		modulate.a = move_toward(modulate.a, non_full_alpha, delta*disappear_speed)
+		if modulate.a == non_full_alpha:
+			set_process(false)
 
 func update_color() -> void:
 	if blink:

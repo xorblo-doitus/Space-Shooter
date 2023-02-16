@@ -49,8 +49,7 @@ func _ready():
 	
 	ST.setup_collisions(self, team)
 	
-	health_bar.max_health = max_health
-	health_bar.target_value = health
+	health_bar.setup(health, max_health)
 	
 #	momentum = min(speed, momentum)
 

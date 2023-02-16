@@ -68,6 +68,6 @@ libraries = {
 position = Vector2(-30, 0)
 
 [node name="HealthBarPivot" type="Marker2D" parent="."]
-position = Vector2(0, 50)
+position = Vector2(0, 38)
 
 [node name="HealthBar" parent="HealthBarPivot" instance=ExtResource("2_jrg4h")]
