@@ -4,4 +4,5 @@
 [ext_resource type="PackedScene" uid="uid://doen40yh523uc" path="res://src/weapons/big_gun.tscn" id="2_wxlvx"]
 
 [node name="BigVessel" instance=ExtResource("1_hhasl")]
+despawn_distance = 30
 default_weapon = ExtResource("2_wxlvx")

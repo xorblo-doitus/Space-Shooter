@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://byx501vlsif2o"]
+[gd_scene load_steps=3 format=3 uid="uid://byx501vlsif2o"]
 
 [ext_resource type="PackedScene" uid="uid://co15xrqex8muw" path="res://src/vessels/vessel.tscn" id="1_5gvvp"]
+[ext_resource type="Script" path="res://src/vessels/enemy_vessel.gd" id="2_ph6qp"]
 
 [node name="EnemyVessel" instance=ExtResource("1_5gvvp")]
+script = ExtResource("2_ph6qp")
 firing = true
+direction = Vector2(-1, 0)

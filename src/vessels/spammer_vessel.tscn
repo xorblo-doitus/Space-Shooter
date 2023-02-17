@@ -4,4 +4,5 @@
 [ext_resource type="PackedScene" uid="uid://dkovbqata6802" path="res://src/weapons/machine_gun.tscn" id="2_e2hjy"]
 
 [node name="SpammerVessel" instance=ExtResource("1_xlsk0")]
+despawn_distance = 30
 default_weapon = ExtResource("2_e2hjy")

@@ -18,7 +18,7 @@ extends HealthBar
 @onready var gradient = $Gradient
 
 func  _ready():
-	super._ready()
+	super()
 	update_gradient()
 
 
