@@ -7,20 +7,25 @@ const bullet_cache := [preload("res://src/bullets/basic_bullet.tscn")]
 
 const velocity_kept: float = 6
 
+
+## Choose the right layers and masks according to team
 static func setup_collisions(obj: CollisionObject2D, team: TEAM, ghost: bool = false) -> CollisionObject2D:
 	if team > 0:
+		# Player
 		if ghost:
 			obj.collision_layer = 0
 		else:
-			obj.collision_layer = 0b1
-		obj.collision_mask = 0b11110000
+			obj.collision_layer = 15
+		obj.collision_mask = 496
 	elif team < 0:
+		# Enemy
 		if ghost:
 			obj.collision_layer = 0
 		else:
-			obj.collision_layer = 0b10000
-		obj.collision_mask = 0b1111
+			obj.collision_layer = 240
+		obj.collision_mask = 527
 	else:
+		# Alone
 		push_warning("Alone team unimplemented")
 	
 	return obj

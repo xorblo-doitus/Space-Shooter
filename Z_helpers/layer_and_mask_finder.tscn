@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wb8icmm0ipix"]
+
+[ext_resource type="Script" path="res://Z_helpers/layer_and_mask_finder.gd" id="1_i43ej"]
+
+[node name="layer_and_mask_finder" type="Node2D"]
+script = ExtResource("1_i43ej")
+player_layers = 15
+player_mask = 496
+enemy_layers = 240
+enemy_mask = 527
