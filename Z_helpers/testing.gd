@@ -1,5 +1,10 @@
 @tool
 extends EditorScript
 
+
+func def_test(inf = HitInfo.new()):
+	return inf
+
 func _run():
-	print(Color(0.5, 0, 1) + Color(0, 0, 1))
+	var inf = def_test()
+	print(def_test(), inf)

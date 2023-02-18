@@ -20,6 +20,7 @@ const EMPTY_WEAPON_ARRAY: Array[Weapon] = []
 @export var direction := Vector2.ZERO
 @export_range(0, 2000, 1, "or_less", "or_greater", "suffix:p/s") var knockback_dealed: float = 500
 @export_range(0, 5, 0.01, "or_greater", "suffix:*") var knockback_weakness: float = 1
+@export_range(0, 5, 0.01, "or_greater", "suffix:*") var recoil_weakness: float = 1
 @export var default_weapon := preload("res://src/weapons/basic_gun.tscn")
 
 
@@ -105,7 +106,7 @@ func _physics_process(delta):
 #			"fire",
 #			bullet
 #		)
-	velocity += weapon.update(delta, firing, velocity)
+	velocity += weapon.update(delta, firing, velocity) * recoil_weakness
 #	reloading -= 1 * delta
 #
 #	if firing:
@@ -136,15 +137,20 @@ func place(pos: Vector2) -> Vessel:
 	position = pos
 	return self
 
-func be_hurt_by(damage_source: DamageSource):
+## Take damage and return the actual damage dealt (if at 1 health and take 10 damage, return 1)
+func be_hurt_by(damage_source: DamageSource, hit_info: HitInfo = HitInfo.new()) -> HitInfo:
+	hit_info.damage_dealt = min(damage_source.damage, health)
 	health -= damage_source.damage
 	if health <= 0:
+		hit_info.fatal = true
+		hit_info.bonus_score += max_health
 		queue_free()
 	else:
 #		animator.play("hurted")s
 		damage_hint = clamp(damage_hint + pow(damage_source.damage/DAMAGE_BLINK_DIVIDING, DAMAGE_BLINK_EXPONENT) + DAMAGE_BLINK_OFFSET, 0, 3)
 		health_bar.target_value = health
 		health_bar.blink = true
+	return hit_info
 
 func install_weapon(new_weapon: Weapon) -> void:
 	new_weapon.team = team

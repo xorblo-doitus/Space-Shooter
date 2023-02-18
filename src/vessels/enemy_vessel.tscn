@@ -5,5 +5,8 @@
 
 [node name="EnemyVessel" instance=ExtResource("1_5gvvp")]
 script = ExtResource("2_ph6qp")
+despawn_distance = 0
+speed = 200.0
 firing = true
 direction = Vector2(-1, 0)
+recoil_weakness = 0.0

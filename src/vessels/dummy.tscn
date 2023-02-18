@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf1jkjsbmwb66"]
+
+[ext_resource type="PackedScene" uid="uid://byx501vlsif2o" path="res://src/vessels/enemy_vessel.tscn" id="1_l3pg7"]
+[ext_resource type="PackedScene" uid="uid://ces2ug230chds" path="res://src/weapons/none_weapon.tscn" id="2_7xlus"]
+
+[node name="Dummy" instance=ExtResource("1_l3pg7")]
+despawn_distance = 30
+speed = 100.0
+default_weapon = ExtResource("2_7xlus")

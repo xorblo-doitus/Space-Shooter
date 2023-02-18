@@ -8,6 +8,9 @@ func _ready():
 	for spawn_point in $SpawnPoints.get_children():
 		add_spawn_point(spawn_point)
 	
+	$SpawnPoints/Player.spawn()
+
+	
 #	for vessel in vessels.get_children(): 
 #		add_vessel(vessel)
 	
@@ -27,3 +30,7 @@ func add_weapon(weapon: Weapon) -> void:
 
 func add_bullet(bullet: Bullet) -> void:
 	bullets.add_child(bullet)
+
+
+func _on_animation_player_animation_finished(_anim_name):
+	$AnimationPlayer.play("test_level")

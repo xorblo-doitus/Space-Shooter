@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ces2ug230chds"]
+
+[ext_resource type="Script" path="res://src/weapons/none_weapon.gd" id="1_c0gx6"]
+
+[node name="NoneWeapon" type="Node2D"]
+script = ExtResource("1_c0gx6")
+
+[node name="AppearPoint" type="Node2D" parent="."]
