@@ -28,7 +28,7 @@ window/stretch/mode="canvas_items"
 
 [gui]
 
-theme/custom="res://src/ui/theme.tres"
+theme/custom="res://src/ui/main_theme.tres"
 
 [input]
 

@@ -1,6 +1,9 @@
 extends Vessel
 class_name PlayerVessel
 
+const kill_combo_added: float = 0.1
+const combo_on_hurted_decrease: float = 1.5
+
 signal score_changed(new_score: float)
 signal combo_changed(new_combo: float)
 
@@ -27,11 +30,20 @@ func _physics_process(delta) -> void:
 
 
 func on_hit(hit: HitInfo) -> void:
-	score += hit.damage_dealt + hit.bonus_score
+	score += combo * (hit.damage_dealt + hit.bonus_score)
+	combo += hit.bonus_combo + (kill_combo_added if hit.fatal else 0.)
 
 
 func bind_bullet(bullet: Bullet) -> void:
 	bullet.hit.connect(on_hit)
+
+
+func be_hurt_by(damage_source: DamageSource, hit_info: HitInfo = HitInfo.new()) -> HitInfo:
+	if combo >= combo_on_hurted_decrease:
+		combo /= combo_on_hurted_decrease
+	elif combo >= 1:
+		combo = 1
+	return super(damage_source, hit_info)
 
 
 func install_weapon(new_weapon: Weapon) -> void:
