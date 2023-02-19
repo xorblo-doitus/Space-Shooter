@@ -17,7 +17,8 @@ extends Node2D
 		enemy_margin = new
 		change()
 
-func change(can_change: bool = Engine.is_editor_hint()):
+var is_ready: bool = false
+func change(can_change: bool = Engine.is_editor_hint() and is_ready):
 	if not can_change:
 		return
 	$LeftPlayer/VerticalShape.shape.size = Vector2i(width, ST.get_screen_height() + 2*(width+margin))
@@ -32,4 +33,5 @@ func change(can_change: bool = Engine.is_editor_hint()):
 	
 	
 func _ready():
+	is_ready = true
 	change(true)

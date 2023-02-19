@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct0ds4kkiok5g"]
+
+[ext_resource type="Script" path="res://src/ui/number_displayer.gd" id="1_41y8s"]
+
+[node name="NumberDisplayer" type="Label"]
+text = "Lorem Ipsum
+"
+vertical_alignment = 1
+script = ExtResource("1_41y8s")

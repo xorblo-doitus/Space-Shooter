@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://0tmedytuiuux"]
+[gd_scene load_steps=14 format=3 uid="uid://0tmedytuiuux"]
 
 [ext_resource type="Script" path="res://src/playable_scenes/world.gd" id="1_ptqmb"]
 [ext_resource type="PackedScene" uid="uid://cyxhgjybj0tsy" path="res://src/spawn_point.tscn" id="2_r822a"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://boej5f28jyrn" path="res://src/vessels/spammer_vessel.tscn" id="4_56gsn"]
 [ext_resource type="PackedScene" uid="uid://blaxpwkxvbxf" path="res://src/vessels/big_vessel.tscn" id="5_gj0fc"]
 [ext_resource type="Script" path="res://src/world_fence.gd" id="6_c4s03"]
+[ext_resource type="PackedScene" uid="uid://du8xf6h7qfqmt" path="res://src/ui/score_displayer.tscn" id="8_tygdl"]
 
 [sub_resource type="Animation" id="Animation_el2on"]
 resource_name = "test_level"
@@ -96,6 +97,21 @@ size = Vector2(2718, 56)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_ptqmb")
+
+[node name="Ui" type="Control" parent="."]
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreDisplayer" parent="Ui/VBoxContainer" instance=ExtResource("8_tygdl")]
+layout_mode = 2
 
 [node name="Bullets" type="Node2D" parent="."]
 

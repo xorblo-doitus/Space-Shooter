@@ -1,12 +1,19 @@
 extends Vessel
+class_name PlayerVessel
 
 signal score_changed(new_score: float)
+signal combo_changed(new_combo: float)
 
 var score: float = 0:
 	set(new):
 		if new != score:
 			score = new
 			score_changed.emit(new)
+var combo: float = 1:
+	set(new):
+		if new != combo:
+			combo = new
+			combo_changed.emit(new)
 
 func _ready() -> void:
 	$Pivot.scale.x = -1

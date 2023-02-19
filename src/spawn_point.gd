@@ -7,5 +7,7 @@ signal spawned(new_vessel: Vessel)
 
 @export var packed_vessel := preload("res://src/vessels/dude_vessel.tscn")
 
-func spawn() -> void:
-	spawned.emit(packed_vessel.instantiate().place(global_position))
+func spawn() -> Vessel:
+	var new_vessel: Vessel = packed_vessel.instantiate().place(global_position)
+	spawned.emit(new_vessel)
+	return new_vessel

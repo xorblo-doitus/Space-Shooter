@@ -8,7 +8,9 @@ func _ready():
 	for spawn_point in $SpawnPoints.get_children():
 		add_spawn_point(spawn_point)
 	
-	$SpawnPoints/Player.spawn()
+	$Ui/VBoxContainer/ScoreDisplayer.bind_player(
+		$SpawnPoints/Player.spawn()
+	)
 
 	
 #	for vessel in vessels.get_children(): 
