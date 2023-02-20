@@ -138,6 +138,7 @@ position = Vector2(1639, 91)
 [node name="Dummy" parent="SpawnPoints" instance=ExtResource("2_r822a")]
 position = Vector2(1639, 238)
 packed_vessel = ExtResource("4_1bdnj")
+area = Vector2i(0, 200)
 
 [node name="Spammer" parent="SpawnPoints" instance=ExtResource("2_r822a")]
 position = Vector2(1642, 504)
