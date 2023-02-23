@@ -1,2 +1,5 @@
+# Space shooter ignores
+*.backup*
+
 # Godot 4+ specific ignores
 .godot/

@@ -1,13 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://0tmedytuiuux"]
+[gd_scene load_steps=17 format=3 uid="uid://0tmedytuiuux"]
 
 [ext_resource type="Script" path="res://src/playable_scenes/world.gd" id="1_ptqmb"]
-[ext_resource type="PackedScene" uid="uid://cyxhgjybj0tsy" path="res://src/spawn_point.tscn" id="2_r822a"]
+[ext_resource type="PackedScene" uid="uid://b7e5e8c5xjdqt" path="res://src/spawners/spawn_point.tscn" id="2_r822a"]
 [ext_resource type="Script" path="res://src/ui/ui.gd" id="2_t8lm1"]
 [ext_resource type="PackedScene" uid="uid://bsicvfemmcryr" path="res://src/vessels/player_vessel.tscn" id="3_nbfms"]
 [ext_resource type="PackedScene" uid="uid://bf1jkjsbmwb66" path="res://src/vessels/dummy.tscn" id="4_1bdnj"]
 [ext_resource type="PackedScene" uid="uid://boej5f28jyrn" path="res://src/vessels/spammer_vessel.tscn" id="4_56gsn"]
 [ext_resource type="PackedScene" uid="uid://blaxpwkxvbxf" path="res://src/vessels/big_vessel.tscn" id="5_gj0fc"]
 [ext_resource type="Script" path="res://src/world_fence.gd" id="6_c4s03"]
+[ext_resource type="PackedScene" uid="uid://qj4tjkxgrqgy" path="res://src/spawners/spawn_area.tscn" id="7_pk8ft"]
+[ext_resource type="PackedScene" uid="uid://dio30b7vxsafs" path="res://src/spawners/spawn_group.tscn" id="8_bffvs"]
 [ext_resource type="PackedScene" uid="uid://du8xf6h7qfqmt" path="res://src/ui/score_displayer.tscn" id="8_tygdl"]
 
 [sub_resource type="Animation" id="Animation_el2on"]
@@ -16,7 +18,7 @@ length = 10.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpawnPoints/Dude")
+tracks/0/path = NodePath("Spawners/Dude")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +35,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SpawnPoints/Spammer")
+tracks/1/path = NodePath("Spawners/Spammer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,7 +49,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SpawnPoints/Big")
+tracks/2/path = NodePath("Spawners/Big")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -61,13 +63,19 @@ tracks/2/keys = {
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("SpawnPoints/Dummy")
+tracks/3/path = NodePath("Spawners/Dummy")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.5, 1.7, 3.6, 6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.6, 2.6, 3.5, 5.2, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"spawn"
+}, {
+"args": [],
+"method": &"spawn"
+}, {
 "args": [],
 "method": &"spawn"
 }, {
@@ -126,27 +134,35 @@ layout_mode = 2
 
 [node name="Vessels" type="Node2D" parent="."]
 
-[node name="SpawnPoints" type="Node2D" parent="."]
+[node name="Spawners" type="Node2D" parent="."]
 
-[node name="Player" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+[node name="Player" parent="Spawners" instance=ExtResource("2_r822a")]
 position = Vector2(200, 384)
 packed_vessel = ExtResource("3_nbfms")
 
-[node name="Dude" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+[node name="Dude" parent="Spawners" instance=ExtResource("2_r822a")]
 position = Vector2(1639, 91)
 
-[node name="Dummy" parent="SpawnPoints" instance=ExtResource("2_r822a")]
-position = Vector2(1639, 238)
-packed_vessel = ExtResource("4_1bdnj")
-area = Vector2i(0, 200)
-
-[node name="Spammer" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+[node name="Spammer" parent="Spawners" instance=ExtResource("2_r822a")]
 position = Vector2(1642, 504)
 packed_vessel = ExtResource("4_56gsn")
 
-[node name="Big" parent="SpawnPoints" instance=ExtResource("2_r822a")]
+[node name="Big" parent="Spawners" instance=ExtResource("2_r822a")]
 position = Vector2(1641, 686)
 packed_vessel = ExtResource("5_gj0fc")
+
+[node name="Dummy" parent="Spawners" instance=ExtResource("8_bffvs")]
+position = Vector2(1743, 400)
+
+[node name="UpArea" parent="Spawners/Dummy" instance=ExtResource("7_pk8ft")]
+position = Vector2(-104, -162)
+area = Vector2i(1, 150)
+packed_vessel = ExtResource("4_1bdnj")
+weight_coef = 0.01
+
+[node name="DownPoint" parent="Spawners/Dummy" instance=ExtResource("2_r822a")]
+position = Vector2(-100, 200)
+packed_vessel = ExtResource("4_1bdnj")
 
 [node name="StatitcBodies" type="Node2D" parent="."]
 

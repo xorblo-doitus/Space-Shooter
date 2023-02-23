@@ -1,25 +1,22 @@
 @tool
-extends Marker2D
+extends Spawner
 class_name SpawnPoint
 
 ## A point spawning an enemy, can do it multiple times
 
-const area_color = Color(1, 0, 0, 0.3)
-
-signal spawned(new_vessel: Vessel)
 
 @export var packed_vessel := preload("res://src/vessels/dude_vessel.tscn")
-@export var area: Vector2i = Vector2i.ZERO:
-	set(new):
-		area = new
-		queue_redraw()
+#@export_range(0, 10, 0.01, "or_greater", "suffix:*") var weight_coef: float = 1
+
+## Choose a position accordingly to the spawner class[br]
+##  - Return this spawner pos
+func choose_position() -> Vector2:
+	return global_position
+
+### Return the weight of this spawner, usefull for SpawnGroup weighted random choice
+#func get_weight() -> float:
+#	return weight_coef
+
 
 func spawn() -> Vessel:
-	var new_vessel: Vessel = packed_vessel.instantiate().place(global_position + Vector2((randf()-.5) * area.x, (randf()-.5) * area.y))
-	spawned.emit(new_vessel)
-	return new_vessel
-
-
-func _draw() -> void:
-	if area:
-		draw_rect(Rect2i(-area/2, area), area_color, false, 10)
+	return setup_new_vessel(packed_vessel.instantiate())

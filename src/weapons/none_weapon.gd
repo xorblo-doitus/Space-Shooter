@@ -10,7 +10,7 @@ func _ready():
 func update(_delta: float, _firing: bool, _implied_velocity: Vector2) -> Vector2:
 	return Vector2.ZERO
 
-func place(pos: Vector2) -> Weapon:
+func place(_pos: Vector2) -> Weapon:
 	return self
 
 func flip() -> void:

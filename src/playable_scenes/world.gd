@@ -5,11 +5,11 @@ class_name World
 @onready var bullets = $Bullets
 
 func _ready():
-	for spawn_point in $SpawnPoints.get_children():
-		add_spawn_point(spawn_point)
+	for spawner in $Spawners.get_children():
+		add_spawner(spawner)
 	
 	$UI/MarginContainer/VBoxContainer/ScoreDisplayer.bind_player(
-		$SpawnPoints/Player.spawn()
+		$Spawners/Player.spawn()
 	)
 
 	
@@ -18,8 +18,8 @@ func _ready():
 	
 	$AnimationPlayer.play("test_level")
 
-func add_spawn_point(spawn_point: SpawnPoint) -> void:
-	spawn_point.spawned.connect(add_vessel)
+func add_spawner(spawner: Spawner) -> void:
+	spawner.spawned.connect(add_vessel)
 
 func add_vessel(vessel: Vessel) -> void:
 	vessel.weapon_equiped.connect(add_weapon)
