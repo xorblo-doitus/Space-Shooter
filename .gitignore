@@ -1,5 +1,6 @@
 # Space shooter ignores
 *.backup*
+raw_assets/
 
 # Godot 4+ specific ignores
 .godot/

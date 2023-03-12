@@ -8,9 +8,11 @@ func _ready():
 	for spawner in $Spawners.get_children():
 		add_spawner(spawner)
 	
-	$UI/MarginContainer/VBoxContainer/ScoreDisplayer.bind_player(
-		$Spawners/Player.spawn()
-	)
+#	var player = 
+	get_tree().call_group("ScoreDisplayer", "bind_player", await $Spawners/Player.spawn())
+#	$UI/MarginContainer/VBoxContainer/ScoreDisplayer.bind_player(
+#		$Spawners/Player.spawn()
+#	)
 
 	
 #	for vessel in vessels.get_children(): 
@@ -33,6 +35,13 @@ func add_weapon(weapon: Weapon) -> void:
 func add_bullet(bullet: Bullet) -> void:
 	bullets.add_child(bullet)
 
+
+func get_spawners() -> Array[Spawner]:
+	var spawners: Array[Spawner] = []
+	for child in $Spawners.get_children():
+		if child is Spawner:
+			spawners.append(child)
+	return spawners
 
 func _on_animation_player_animation_finished(_anim_name):
 	$AnimationPlayer.play("test_level")

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 class_name Vessel
 
 signal weapon_equiped(new_weapon: Weapon)

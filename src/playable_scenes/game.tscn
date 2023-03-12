@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct81gqhg2ut6g"]
+
+[ext_resource type="Script" path="res://src/ui/ui.gd" id="1_02qeb"]
+[ext_resource type="Script" path="res://src/playable_scenes/game.gd" id="1_pqxmb"]
+[ext_resource type="PackedScene" uid="uid://du8xf6h7qfqmt" path="res://src/ui/score_displayer.tscn" id="2_q5w7j"]
+[ext_resource type="PackedScene" uid="uid://b73gh8gml20w4" path="res://src/playable_scenes/world.tscn" id="3_2u4h7"]
+[ext_resource type="PackedScene" uid="uid://bco3488ut3upw" path="res://src/ui/popup_manager.tscn" id="3_p3vng"]
+[ext_resource type="Material" uid="uid://n0viumhj77f5" path="res://src/shadering/materials/screen_color_palette.tres" id="6_pvvxu"]
+
+[node name="Game" type="CanvasLayer"]
+script = ExtResource("1_pqxmb")
+
+[node name="UI" type="Control" parent="."]
+z_index = 100
+custom_minimum_size = Vector2(1366, 768)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1366.0
+offset_bottom = 768.0
+script = ExtResource("1_02qeb")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreDisplayer" parent="UI/MarginContainer/VBoxContainer" instance=ExtResource("2_q5w7j")]
+layout_mode = 2
+
+[node name="PopupManager" parent="." instance=ExtResource("3_p3vng")]
+unique_name_in_owner = true
+draw_debug_lines = false
+
+[node name="World" parent="." instance=ExtResource("3_2u4h7")]
+unique_name_in_owner = true
+
+[node name="ScreenPalette" type="ColorRect" parent="."]
+z_index = 4096
+material = ExtResource("6_pvvxu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

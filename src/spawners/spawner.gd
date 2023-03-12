@@ -5,19 +5,20 @@ class_name Spawner
 
 ## emitted when a new vessel is spawned
 signal spawned(new_vessel: Vessel)
+signal warn(popup: WarningPopup)
 
 @export_range(0, 10, 0.01, "or_greater", "suffix:*") var weight_coef: float = 1
 
-func spawn() -> Vessel:
+func spawn() -> Entity:
 	@warning_ignore("assert_always_false")
 	assert(false, "virtual method not implemented")
 	return
 
 
-func setup_new_vessel(new_vessel: Vessel) -> Vessel:
-	new_vessel.place(choose_position())
-	spawned.emit(new_vessel)
-	return new_vessel
+#func setup_new_vessel(new_vessel: Vessel) -> Vessel:
+#	new_vessel.place(choose_position())
+#	spawned.emit(new_vessel)
+#	return new_vessel
 
 
 ## Return the weight of this spawner, usefull for SpawnGroup weighted random choice

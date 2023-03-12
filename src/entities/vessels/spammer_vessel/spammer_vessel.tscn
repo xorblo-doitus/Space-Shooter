@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://boej5f28jyrn"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://byx501vlsif2o" path="res://src/vessels/enemy_vessel.tscn" id="1_xlsk0"]
+[ext_resource type="PackedScene" path="res://src/entities/vessels/enemy_vessel.tscn" id="1_xlsk0"]
 [ext_resource type="PackedScene" uid="uid://dkovbqata6802" path="res://src/weapons/machine_gun.tscn" id="2_e2hjy"]
 
 [node name="SpammerVessel" instance=ExtResource("1_xlsk0")]

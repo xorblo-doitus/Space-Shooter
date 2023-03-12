@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bco3488ut3upw"]
+
+[ext_resource type="Script" path="res://src/ui/popup_path.gd" id="1_grmwc"]
+[ext_resource type="Script" path="res://src/ui/popup_manager.gd" id="1_u5t82"]
+
+[sub_resource type="Curve2D" id="Curve2D_e0f6l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, -100, 74, 174, 0, 0, 0, 0, 174, 74, 0, 0, 100, 0, 1192, 74, 0, 0, 0, 0, 1292, 174, 0, 0, 0, 100, 1292, 594, 0, 0, 0, 0, 1192, 694, 0, 0, -100, 0, 174, 694, 0, 0, 0, 0, 74, 594, 0, 0, 0, 0, 74, 174)
+}
+point_count = 9
+
+[node name="PopupManager" type="Node2D"]
+script = ExtResource("1_u5t82")
+draw_debug_lines = true
+
+[node name="Popups" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="PopupPath" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_e0f6l")
+script = ExtResource("1_grmwc")
+margin = 74
+corner_radius = 100
+
+[connection signal="modified" from="PopupPath" to="." method="queue_redraw"]

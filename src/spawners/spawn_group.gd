@@ -21,27 +21,29 @@ func _ready():
 	for spawner in spawners:
 		spawners_weight += spawner.get_weight()
 		spawner.spawned.connect(redirect_spawned_event)
+		spawner.warn.connect(redirect_warn_event)
 
 
 func redirect_spawned_event(new_vessel: Vessel):
 	spawned.emit(new_vessel)
-
+func redirect_warn_event(new_popup: WarningPopup):
+	warn.emit(new_popup)
 
 ## Return the weight of this spawner, usefull for SpawnGroup weighted random choice
 func get_weight() -> float:
 	return weight_coef * spawners_weight
 
 
-func spawn() -> Vessel:
+func spawn() -> Entity:
 	var num_choosed: float = randf() * spawners_weight
 	
 	for spawner in spawners:
 		num_choosed -= spawner.get_weight()
 		if num_choosed <= 0:
-			return spawner.spawn()
+			return await spawner.spawn()
 	
 	# Just in case
-	return spawners[-1].spawn()
+	return await spawners[-1].spawn()
 
 
 func _draw():

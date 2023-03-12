@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://n0viumhj77f5"]
+
+[ext_resource type="Shader" path="res://src/shadering/shaders/screen_color_palette.gdshader" id="1_q2rkh"]
+
+[resource]
+shader = ExtResource("1_q2rkh")
+shader_parameter/red_channel = Color(0.819608, 1, 0, 1)
+shader_parameter/green_channel = Color(0.635294, 0, 1, 1)
+shader_parameter/blue_channel = Color(0, 0, 1, 1)
+shader_parameter/red_weight = 1.0
+shader_parameter/green_weight = 1.0
+shader_parameter/blue_weight = 0.0

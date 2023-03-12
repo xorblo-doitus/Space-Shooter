@@ -1,16 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://0tmedytuiuux"]
+[gd_scene load_steps=18 format=3 uid="uid://b73gh8gml20w4"]
 
 [ext_resource type="Script" path="res://src/playable_scenes/world.gd" id="1_ptqmb"]
-[ext_resource type="PackedScene" uid="uid://b7e5e8c5xjdqt" path="res://src/spawners/spawn_point.tscn" id="2_r822a"]
-[ext_resource type="Script" path="res://src/ui/ui.gd" id="2_t8lm1"]
-[ext_resource type="PackedScene" uid="uid://bsicvfemmcryr" path="res://src/vessels/player_vessel.tscn" id="3_nbfms"]
-[ext_resource type="PackedScene" uid="uid://bf1jkjsbmwb66" path="res://src/vessels/dummy.tscn" id="4_1bdnj"]
-[ext_resource type="PackedScene" uid="uid://boej5f28jyrn" path="res://src/vessels/spammer_vessel.tscn" id="4_56gsn"]
-[ext_resource type="PackedScene" uid="uid://blaxpwkxvbxf" path="res://src/vessels/big_vessel.tscn" id="5_gj0fc"]
+[ext_resource type="PackedScene" uid="uid://b7e5e8c5xjdqt" path="res://spawn_point.backup.tscn" id="2_r822a"]
+[ext_resource type="Resource" uid="uid://d0bfg0v2ww0wd" path="res://src/entities/vessels/player/player_vessel.tres" id="3_m73ji"]
+[ext_resource type="Resource" uid="uid://cvaa382luqrdd" path="res://src/entities/vessels/dude_vessel/dude_vessel.tres" id="4_arjsp"]
+[ext_resource type="Resource" uid="uid://dg2wenmhvuq81" path="res://src/entities/vessels/spammer_vessel/spammer_vessel.tres" id="5_410k0"]
+[ext_resource type="Resource" uid="uid://cyfysp6i28o24" path="res://src/entities/vessels/big_vessel/big_vessel.tres" id="6_4k3bq"]
 [ext_resource type="Script" path="res://src/world_fence.gd" id="6_c4s03"]
 [ext_resource type="PackedScene" uid="uid://qj4tjkxgrqgy" path="res://src/spawners/spawn_area.tscn" id="7_pk8ft"]
 [ext_resource type="PackedScene" uid="uid://dio30b7vxsafs" path="res://src/spawners/spawn_group.tscn" id="8_bffvs"]
-[ext_resource type="PackedScene" uid="uid://du8xf6h7qfqmt" path="res://src/ui/score_displayer.tscn" id="8_tygdl"]
+[ext_resource type="Material" uid="uid://twgo1jbjoj4u" path="res://src/shadering/materials/color_palette.tres" id="10_08syi"]
+[ext_resource type="Texture2D" uid="uid://b8njfng6gaoa" path="res://assets/sprites/popups/alert_arrow.png" id="11_oracx"]
+[ext_resource type="Texture2D" uid="uid://4wvolox16e55" path="res://assets/sprites/color_test.png" id="12_jvcf2"]
 
 [sub_resource type="Animation" id="Animation_el2on"]
 resource_name = "test_level"
@@ -107,29 +108,6 @@ size = Vector2(2718, 56)
 [node name="World" type="Node2D"]
 script = ExtResource("1_ptqmb")
 
-[node name="UI" type="Control" parent="."]
-z_index = 100
-custom_minimum_size = Vector2(1366, 768)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1366.0
-offset_bottom = 768.0
-script = ExtResource("2_t8lm1")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
-layout_mode = 2
-
-[node name="ScoreDisplayer" parent="UI/MarginContainer/VBoxContainer" instance=ExtResource("8_tygdl")]
-layout_mode = 2
-
 [node name="Bullets" type="Node2D" parent="."]
 
 [node name="Vessels" type="Node2D" parent="."]
@@ -138,18 +116,19 @@ layout_mode = 2
 
 [node name="Player" parent="Spawners" instance=ExtResource("2_r822a")]
 position = Vector2(200, 384)
-packed_vessel = ExtResource("3_nbfms")
+entity_info = ExtResource("3_m73ji")
 
 [node name="Dude" parent="Spawners" instance=ExtResource("2_r822a")]
 position = Vector2(1639, 91)
+entity_info = ExtResource("4_arjsp")
 
 [node name="Spammer" parent="Spawners" instance=ExtResource("2_r822a")]
 position = Vector2(1642, 504)
-packed_vessel = ExtResource("4_56gsn")
+entity_info = ExtResource("5_410k0")
 
 [node name="Big" parent="Spawners" instance=ExtResource("2_r822a")]
 position = Vector2(1641, 686)
-packed_vessel = ExtResource("5_gj0fc")
+entity_info = ExtResource("6_4k3bq")
 
 [node name="Dummy" parent="Spawners" instance=ExtResource("8_bffvs")]
 position = Vector2(1743, 400)
@@ -157,12 +136,12 @@ position = Vector2(1743, 400)
 [node name="UpArea" parent="Spawners/Dummy" instance=ExtResource("7_pk8ft")]
 position = Vector2(-104, -162)
 area = Vector2i(1, 150)
-packed_vessel = ExtResource("4_1bdnj")
+entity_info = ExtResource("4_arjsp")
 weight_coef = 0.01
 
 [node name="DownPoint" parent="Spawners/Dummy" instance=ExtResource("2_r822a")]
 position = Vector2(-100, 200)
-packed_vessel = ExtResource("4_1bdnj")
+entity_info = ExtResource("4_arjsp")
 
 [node name="StatitcBodies" type="Node2D" parent="."]
 
@@ -219,5 +198,23 @@ collision_mask = 0
 
 [node name="HorizontalShape" type="CollisionShape2D" parent="WorldFence/Down"]
 shape = SubResource("RectangleShape2D_l3rxe")
+
+[node name="AlertArrow" type="Sprite2D" parent="."]
+material = ExtResource("10_08syi")
+position = Vector2(1097, 655)
+texture = ExtResource("11_oracx")
+
+[node name="ColorTest" type="Sprite2D" parent="."]
+material = ExtResource("10_08syi")
+position = Vector2(1164, 655)
+texture = ExtResource("12_jvcf2")
+
+[node name="AlertArrow2" type="Sprite2D" parent="."]
+position = Vector2(1097, 594)
+texture = ExtResource("11_oracx")
+
+[node name="ColorTest2" type="Sprite2D" parent="."]
+position = Vector2(1164, 594)
+texture = ExtResource("12_jvcf2")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

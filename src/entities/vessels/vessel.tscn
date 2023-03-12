@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://co15xrqex8muw"]
+[gd_scene load_steps=7 format=3 uid="uid://dmpjfmtm3q8b"]
 
-[ext_resource type="Script" path="res://src/vessels/vessel.gd" id="1_brldt"]
+[ext_resource type="Script" path="res://src/entities/vessels/vessel.gd" id="1_brldt"]
 [ext_resource type="PackedScene" uid="uid://cu5v11es0t178" path="res://src/ui/health_bar.tscn" id="2_jrg4h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t53g7"]

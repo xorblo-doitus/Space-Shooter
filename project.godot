@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Space Shooter"
-run/main_scene="res://src/playable_scenes/world.tscn"
+run/main_scene="res://src/playable_scenes/game.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Init="*res://src/singletons/init.gd"
 SpecialInputs="res://src/singletons/SpecialInputs.gd"
+Wait="*res://src/singletons/wait.gd"
 
 [display]
 
@@ -77,3 +78,4 @@ fullscreen={
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0.12549, 0, 1)

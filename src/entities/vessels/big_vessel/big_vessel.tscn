@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://blaxpwkxvbxf"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://byx501vlsif2o" path="res://src/vessels/enemy_vessel.tscn" id="1_hhasl"]
+[ext_resource type="PackedScene" uid="uid://byx501vlsif2o" path="res://src/entities/vessels/enemy_vessel.tscn" id="1_hhasl"]
 [ext_resource type="PackedScene" uid="uid://doen40yh523uc" path="res://src/weapons/big_gun.tscn" id="2_wxlvx"]
 
 [node name="BigVessel" instance=ExtResource("1_hhasl")]

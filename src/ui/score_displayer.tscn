@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ct0ds4kkiok5g" path="res://src/ui/number_displayer.tscn" id="1_0s0pp"]
 [ext_resource type="Script" path="res://src/ui/score_displayer.gd" id="1_kj05g"]
 
-[node name="ScoreDisplayer" type="HBoxContainer"]
+[node name="ScoreDisplayer" type="HBoxContainer" groups=["ScoreDisplayer"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

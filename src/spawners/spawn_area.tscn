@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://qj4tjkxgrqgy"]
 
-[ext_resource type="PackedScene" uid="uid://b7e5e8c5xjdqt" path="res://src/spawners/spawn_point.tscn" id="1_6onvk"]
+[ext_resource type="PackedScene" uid="uid://b7e5e8c5xjdqt" path="res://spawn_point.tscn" id="1_6onvk"]
 [ext_resource type="Script" path="res://src/spawners/spawn_area.gd" id="2_7robe"]
 
 [node name="SpawnArea" instance=ExtResource("1_6onvk")]
 script = ExtResource("2_7robe")
-area = Vector2i(1, 1)
 weight_coef = 0.1
+area = Vector2i(1, 1)

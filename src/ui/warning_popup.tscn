@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0udl2fe44kg2"]
+
+[ext_resource type="Script" path="res://src/ui/warning_popup.gd" id="1_kcckx"]
+[ext_resource type="Texture2D" uid="uid://b8njfng6gaoa" path="res://assets/sprites/popups/alert_arrow.png" id="3_vmphp"]
+[ext_resource type="Texture2D" uid="uid://c1pry8n30pj0l" path="res://assets/sprites/popups/overlay.png" id="4_gy22q"]
+[ext_resource type="Texture2D" uid="uid://d1bv0eiwq34o" path="res://assets/sprites/popups/icon.png" id="5_qq7qn"]
+
+[sub_resource type="Animation" id="Animation_ql04i"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_5x3wc"]
+resource_name = "float"
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0, 48, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhfcq"]
+_data = {
+"RESET": SubResource("Animation_ql04i"),
+"float": SubResource("Animation_5x3wc")
+}
+
+[node name="WarningPopup" type="CanvasGroup"]
+script = ExtResource("1_kcckx")
+
+[node name="ArrowPivot" type="Marker2D" parent="."]
+unique_name_in_owner = true
+rotation = -8.79669
+
+[node name="Arrow" type="Sprite2D" parent="ArrowPivot"]
+unique_name_in_owner = true
+position = Vector2(32, 0)
+texture = ExtResource("3_vmphp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ArrowPivot/Arrow"]
+speed_scale = 0.6
+libraries = {
+"": SubResource("AnimationLibrary_bhfcq")
+}
+
+[node name="IconOverlay" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+texture = ExtResource("4_gy22q")
+
+[node name="Icon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("5_qq7qn")

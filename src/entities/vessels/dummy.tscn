@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bf1jkjsbmwb66"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://byx501vlsif2o" path="res://src/vessels/enemy_vessel.tscn" id="1_l3pg7"]
+[ext_resource type="PackedScene" uid="uid://byx501vlsif2o" path="res://src/entities/vessels/enemy_vessel.tscn" id="1_l3pg7"]
 [ext_resource type="PackedScene" uid="uid://ces2ug230chds" path="res://src/weapons/none_weapon.tscn" id="2_7xlus"]
 
 [node name="Dummy" instance=ExtResource("1_l3pg7")]

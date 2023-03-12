@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EntityInfo" load_steps=4 format=3 uid="uid://cvaa382luqrdd"]
+
+[ext_resource type="PackedScene" path="res://src/entities/vessels/dude_vessel/dude_vessel.tscn" id="1_1q14y"]
+[ext_resource type="Script" path="res://src/resources/entity_info.gd" id="1_3wwlv"]
+[ext_resource type="Texture2D" uid="uid://b8njfng6gaoa" path="res://assets/sprites/popups/alert_arrow.png" id="2_km07y"]
+
+[resource]
+script = ExtResource("1_3wwlv")
+entity = ExtResource("1_1q14y")
+spawn_time = -1.0
+warning_popu_arrow = ExtResource("2_km07y")
