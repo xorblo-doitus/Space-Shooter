@@ -1,14 +1,80 @@
-[gd_scene load_steps=2 format=3 uid="uid://cib1spcdun4on"]
+[gd_scene load_steps=9 format=3 uid="uid://cib1spcdun4on"]
 
 [ext_resource type="Script" path="res://src/weapons/weapon.gd" id="1_w0832"]
+[ext_resource type="Material" uid="uid://dwx3mllp6c2b8" path="res://src/shadering/materials/brightness_mapper.tres" id="2_kdd7c"]
+[ext_resource type="PackedScene" uid="uid://52rv60gdc8uf" path="res://tracktor_beam.tscn" id="3_f7gur"]
+[ext_resource type="Script" path="res://src/weapons/center.gd" id="3_rhohd"]
+
+[sub_resource type="Curve" id="Curve_bojf5"]
+_data = [Vector2(0, 0), 0.0, 0.385291, 0, 0, Vector2(1, 1), 2.17658, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_065r5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Center/MainSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_s660s"]
+resource_name = "rotate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Center/MainSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4fh2"]
+_data = {
+"RESET": SubResource("Animation_065r5"),
+"rotate": SubResource("Animation_s660s")
+}
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_w0832")
+brightness_mapper = ExtResource("2_kdd7c")
+brightnessable = Array[NodePath]([NodePath("Pivot/Center/MainSprite")])
+animation_speed_curve = SubResource("Curve_bojf5")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(1, 0, 0, 0.513726)
-polygon = PackedVector2Array(0, -30, 80, -80, 30, 0, 80, 80, 0, 30, -80, 80, -30, 0, -80, -80)
+[node name="Animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_b4fh2")
+}
 
-[node name="AppearPoint" type="Marker2D" parent="."]
-position = Vector2(-60, 0)
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="TracktorBeam" parent="Pivot" instance=ExtResource("3_f7gur")]
+unique_name_in_owner = true
+curving = 10.0
+
+[node name="Center" type="Marker2D" parent="Pivot"]
+unique_name_in_owner = true
+position = Vector2(32, 0)
+script = ExtResource("3_rhohd")
+follow_speed_multiplier = 8
+
+[node name="AppearPoint" type="Marker2D" parent="Pivot/Center"]
+unique_name_in_owner = true
 gizmo_extents = 20.0
+
+[node name="MainSprite" type="Sprite2D" parent="Pivot/Center"]
+
+[node name="CenterTarget" type="Marker2D" parent="."]
+unique_name_in_owner = true

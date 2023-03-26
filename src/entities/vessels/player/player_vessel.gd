@@ -19,7 +19,7 @@ var combo: float = 1:
 			combo_changed.emit(new)
 
 func _ready() -> void:
-	$Pivot.scale.x = -1
+	set_flip(false)
 	super()
 
 func _physics_process(delta) -> void:

@@ -53,6 +53,5 @@ func setup(new_target_pos, icon_overlay_texture = null, icon_texture: Texture2D 
 
 
 func update_arrow() -> WarningPopup:
-	print(global_position, " instead ", %ArrowPivot.global_position)
 	%ArrowPivot.look_at(target_pos)
 	return self

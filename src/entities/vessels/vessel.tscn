@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmpjfmtm3q8b"]
+[gd_scene load_steps=8 format=3 uid="uid://dmpjfmtm3q8b"]
 
 [ext_resource type="Script" path="res://src/entities/vessels/vessel.gd" id="1_brldt"]
+[ext_resource type="Material" uid="uid://dwx3mllp6c2b8" path="res://src/shadering/materials/brightness_mapper.tres" id="2_di0kd"]
 [ext_resource type="PackedScene" uid="uid://cu5v11es0t178" path="res://src/ui/health_bar.tscn" id="2_jrg4h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t53g7"]
@@ -63,9 +64,20 @@ libraries = {
 }
 
 [node name="Pivot" type="Marker2D" parent="."]
+unique_name_in_owner = true
 
-[node name="Canon" type="Marker2D" parent="Pivot"]
-position = Vector2(-30, 0)
+[node name="SpritePivot" type="Marker2D" parent="Pivot"]
+unique_name_in_owner = true
+material = ExtResource("2_di0kd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/SpritePivot"]
+use_parent_material = true
+
+[node name="WeaponsPivot" type="Marker2D" parent="Pivot"]
+unique_name_in_owner = true
+
+[node name="MainWeapon" type="Marker2D" parent="Pivot/WeaponsPivot"]
+position = Vector2(30, 0)
 
 [node name="HealthBarPivot" type="Marker2D" parent="."]
 position = Vector2(0, 38)

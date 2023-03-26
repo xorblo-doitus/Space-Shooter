@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu5v11es0t178"]
+[gd_scene load_steps=2 format=3 uid="uid://cu5v11es0t178"]
 
 [ext_resource type="Script" path="res://src/ui/health_bar.gd" id="2_vtr6v"]
-[ext_resource type="Theme" uid="uid://dm4udtrkpx6xu" path="res://src/ui/main_theme.tres" id="2_xvee5"]
 
 [node name="HealthBar" type="ProgressBar"]
 z_index = 100
@@ -31,8 +30,9 @@ offset_top = -3.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_xvee5")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 2
 text = "Lorem/Ipsum"
 horizontal_alignment = 1
 vertical_alignment = 1

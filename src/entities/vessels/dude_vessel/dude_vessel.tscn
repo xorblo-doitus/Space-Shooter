@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://q6vxgdgcdygy"]
 
-[ext_resource type="PackedScene" uid="uid://byx501vlsif2o" path="res://src/entities/vessels/enemy_vessel.tscn" id="1_xlsk0"]
+[ext_resource type="PackedScene" uid="uid://c5j28lhw1skbt" path="res://src/entities/vessels/enemy_vessel.tscn" id="1_xlsk0"]
+[ext_resource type="Texture2D" uid="uid://b3kboliwxj6wi" path="res://assets/sprites/entities/vessels/dude.png" id="2_mwffv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ql7k"]
+height = 56.0
 
 [node name="DudeVessel" instance=ExtResource("1_xlsk0")]
 despawn_distance = 30
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_5ql7k")
+
+[node name="Sprite2D" parent="Pivot/SpritePivot" index="0"]
+texture = ExtResource("2_mwffv")
+
+[node name="MainWeapon" parent="Pivot/WeaponsPivot" index="0"]
+position = Vector2(21, 3)

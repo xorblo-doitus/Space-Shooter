@@ -22,6 +22,10 @@ func  _ready():
 	update_gradient()
 
 
+func _process(delta):
+	modulate = Color.WHITE
+
+
 func update_gradient():
 	print("updating gradient...")
 	for child in gradient.get_children():

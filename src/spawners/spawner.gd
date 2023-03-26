@@ -12,6 +12,8 @@ signal warn(popup: WarningPopup)
 func spawn() -> Entity:
 	@warning_ignore("assert_always_false")
 	assert(false, "virtual method not implemented")
+	@warning_ignore("redundant_await")
+	await 0
 	return
 
 

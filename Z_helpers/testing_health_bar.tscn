@@ -1,17 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0rkviu5w5alt"]
+[gd_scene load_steps=5 format=3 uid="uid://c0rkviu5w5alt"]
 
-[ext_resource type="PackedScene" uid="uid://c0dghebk37oqr" path="res://src/ui/health_bar.tscn" id="1_k8whi"]
+[ext_resource type="PackedScene" uid="uid://cu5v11es0t178" path="res://src/ui/health_bar.tscn" id="1_k8whi"]
 [ext_resource type="Script" path="res://Z_helpers/testing_health_bar.gd" id="2_ep3h3"]
+[ext_resource type="PackedScene" uid="uid://bhmr07jivtbv0" path="res://src/shadering/screen_palette.tscn" id="3_wyh12"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dctta"]
-bg_color = Color(1.035, 1.965, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e882w"]
+bg_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="TestingHealthBar" instance=ExtResource("1_k8whi")]
-theme_override_styles/fill = SubResource("StyleBoxFlat_dctta")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e882w")
 value = 65.5
 script = ExtResource("2_ep3h3")
 testing_health = 65.5
@@ -24,3 +25,18 @@ offset_right = 1.0
 offset_bottom = 34.0
 
 [node name="Gradient" type="Node2D" parent="." index="1"]
+
+[node name="Label" parent="." index="2"]
+text = "66/100"
+
+[node name="ScreenPalette" parent="." index="5" instance=ExtResource("3_wyh12")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 41.0
+offset_top = -38.0
+offset_right = 41.0
+offset_bottom = 46.0
+grow_horizontal = 1
+grow_vertical = 1

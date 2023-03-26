@@ -24,9 +24,10 @@ const EMPTY_WEAPON_ARRAY: Array[Weapon] = []
 @export var default_weapon := preload("res://src/weapons/basic_gun.tscn")
 
 
-@onready var canon = $Pivot/Canon
+@onready var canon = $Pivot/WeaponsPivot/MainWeapon
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var health_bar = $HealthBarPivot/HealthBar
+@onready var damage_hint_material: ShaderMaterial = $Pivot/SpritePivot.material.duplicate()
 
 #@onready var animator = $Animator
 
@@ -43,6 +44,8 @@ func _ready():
 	install_weapon(default_weapon.instantiate())
 	canon.add_child(weapon)
 	
+	$Pivot/SpritePivot.material = damage_hint_material
+	
 	for __ in KNOCKBACK_HISTORY:
 		recently_knocked.append([])
 	
@@ -55,7 +58,9 @@ func _ready():
 #	momentum = min(speed, momentum)
 
 func _process(delta):
-	collision_shape_2d.debug_color = Color(damage_hint, damage_hint-1, 1-damage_hint if damage_hint < 2 else damage_hint-2, 0.41)
+#	collision_shape_2d.debug_color = Color(damage_hint, damage_hint-1, 1-damage_hint if damage_hint < 2 else damage_hint-2, 0.41)
+	damage_hint_material.set_shader_parameter("amount", damage_hint/3)
+	
 	damage_hint = move_toward(damage_hint, 0, delta * DAMAGE_BLINK_DECAY_SPEED)
 	
 
@@ -160,3 +165,10 @@ func install_weapon(new_weapon: Weapon) -> void:
 func get_installed_weapons() -> Array[Weapon]:
 	return [weapon] if weapon else EMPTY_WEAPON_ARRAY
 
+
+func set_flip(state: bool = true) -> void:
+	%Pivot.scale.x = -1 if state else 1
+	
+	
+	
+	

@@ -11,7 +11,6 @@ func add_popup(popup: WarningPopup) -> WarningPopup:
 	%Popups.add_child(popup)
 	popup.position = %PopupPath.curve.get_closest_point(popup.target_pos)
 	popup.update_arrow.call_deferred()
-	print(popup.position, " buuuut ", popup.global_position)
 	popup.get_node("ArrowPivot").look_at(popup.target_pos)
 	return popup
 
@@ -23,7 +22,6 @@ func clear() -> void:
 
 func _draw():
 	if Engine.is_editor_hint() and draw_debug_lines:
-		print(global_position)
 		clear()
 		var packed_popup = load("res://src/ui/warning_popup.tscn")
 		for y in [-100, ST.get_screen_height() + 100]:

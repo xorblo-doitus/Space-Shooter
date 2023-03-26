@@ -46,8 +46,9 @@ func setup(init_health: float, init_max_health: float) -> HealthBar:
 
 
 static func set_color_from_percent(color: Color, percent: float) -> Color:
-	color.r = 3-percent*3
-	color.g = percent*3
+#	color.r = 3-percent*3
+#	color.g = percent*3
+	color = Color.GREEN
 	return color
 
 func stop_blink() -> void:

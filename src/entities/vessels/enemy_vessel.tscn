@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://c5j28lhw1skbt"]
 
-[ext_resource type="PackedScene" uid="uid://co15xrqex8muw" path="res://src/entities/vessels/vessel.tscn" id="1_5gvvp"]
+[ext_resource type="PackedScene" uid="uid://dmpjfmtm3q8b" path="res://src/entities/vessels/vessel.tscn" id="1_5gvvp"]
 [ext_resource type="Script" path="res://src/entities/vessels/enemy_vessel.gd" id="2_ph6qp"]
 
 [node name="EnemyVessel" instance=ExtResource("1_5gvvp")]

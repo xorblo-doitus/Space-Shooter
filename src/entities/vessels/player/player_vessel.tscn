@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccsi3njx2nydi"]
+[gd_scene load_steps=5 format=3 uid="uid://ccsi3njx2nydi"]
 
 [ext_resource type="Script" path="res://src/entities/vessels/player/player_vessel.gd" id="1_3nvqr"]
 [ext_resource type="PackedScene" uid="uid://dmpjfmtm3q8b" path="res://src/entities/vessels/vessel.tscn" id="1_i8fa2"]
+[ext_resource type="Texture2D" uid="uid://biq7bujc6yduk" path="res://assets/sprites/entities/vessels/player.png" id="3_pals8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55kax"]
+radius = 12.0
+height = 52.0
 
 [node name="PlayerVessel" instance=ExtResource("1_i8fa2")]
 collision_layer = 1
@@ -9,3 +14,13 @@ collision_mask = 240
 script = ExtResource("1_3nvqr")
 team = 1
 max_health = 1000.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_55kax")
+
+[node name="Sprite2D" parent="Pivot/SpritePivot" index="0"]
+texture = ExtResource("3_pals8")
+
+[node name="MainWeapon" parent="Pivot/WeaponsPivot" index="0"]
+position = Vector2(26, 5)

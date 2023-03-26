@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dwx3mllp6c2b8"]
+
+[ext_resource type="Shader" path="res://src/shadering/shaders/color_adder.gdshader" id="1_axgye"]
+
+[resource]
+shader = ExtResource("1_axgye")
+shader_parameter/color_added = Color(0, 0, 1, 1)
+shader_parameter/amount = 0.0

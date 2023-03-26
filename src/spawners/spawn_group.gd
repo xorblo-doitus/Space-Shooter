@@ -40,9 +40,11 @@ func spawn() -> Entity:
 	for spawner in spawners:
 		num_choosed -= spawner.get_weight()
 		if num_choosed <= 0:
+#			@warning_ignore("redundant_await")
 			return await spawner.spawn()
 	
 	# Just in case
+#	@warning_ignore("redundant_await")
 	return await spawners[-1].spawn()
 
 

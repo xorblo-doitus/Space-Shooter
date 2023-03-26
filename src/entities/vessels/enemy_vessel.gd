@@ -11,7 +11,9 @@ class_name EnemyVessel
 
 func _ready():
 	assert(despawn_distance, "Despawn distance has not been set on " + name)
+	set_flip(true)
 	super()
+	
 
 
 func _physics_process(delta):

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://du8xf6h7qfqmt" path="res://src/ui/score_displayer.tscn" id="2_q5w7j"]
 [ext_resource type="PackedScene" uid="uid://b73gh8gml20w4" path="res://src/playable_scenes/world.tscn" id="3_2u4h7"]
 [ext_resource type="PackedScene" uid="uid://bco3488ut3upw" path="res://src/ui/popup_manager.tscn" id="3_p3vng"]
-[ext_resource type="Material" uid="uid://n0viumhj77f5" path="res://src/shadering/materials/screen_color_palette.tres" id="6_pvvxu"]
+[ext_resource type="PackedScene" uid="uid://bhmr07jivtbv0" path="res://src/shadering/screen_palette.tscn" id="6_w0jgq"]
 
 [node name="Game" type="CanvasLayer"]
 script = ExtResource("1_pqxmb")
@@ -40,11 +40,4 @@ draw_debug_lines = false
 [node name="World" parent="." instance=ExtResource("3_2u4h7")]
 unique_name_in_owner = true
 
-[node name="ScreenPalette" type="ColorRect" parent="."]
-z_index = 4096
-material = ExtResource("6_pvvxu")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ScreenPalette" parent="." instance=ExtResource("6_w0jgq")]

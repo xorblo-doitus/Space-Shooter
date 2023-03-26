@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhmr07jivtbv0"]
+
+[ext_resource type="Material" uid="uid://n0viumhj77f5" path="res://src/shadering/materials/screen_color_palette.tres" id="1_65mrf"]
+
+[node name="ScreenPalette" type="ColorRect"]
+z_index = 4096
+material = ExtResource("1_65mrf")
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
